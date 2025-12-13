@@ -1,0 +1,13 @@
+# Task to count files in a directory
+# By Ed Scrimaglia
+---
+- name: Count files
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/../documentacion/modulos"
+    patterns: ^1
+    use_regex: true
+  register: files_start_found
+
+- name: Show files found
+  ansible.builtin.debug:
+    var: files_start_found

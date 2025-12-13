@@ -1,0 +1,102 @@
+# Playbook para generar codigo utilizando templates Jinja2
+# By Ed Scrimaglia
+---
+- name: Generar codigo desde templates Jinja2 para interfaces de acceso
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  gather_facts: false
+
+  vars_files:
+    - ../modelo_datos/modelo.yaml
+
+  tasks:
+    - name: Defincion de variables locales
+      ansible.builtin.set_fact:
+        interfaces: "{{ modelo.infra_spec.devices[inventory_hostname].interfaces }}"
+
+    - name: Renderizar template Jinja2 para configurarcion de interfaces de acceso
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/inter_access_{{ item.type }}.j2"
+        dest: "{{ playbook_dir }}/{{ item.dest }}/{{ item.orden }}{{ inventory_hostname }}_int_access.{{ item.ext }}"
+        mode: "0644"
+      register: int_access_result
+      loop:
+        - {type: cfg, dest: "../configs", ext: cfg, orden: ""}
+        - {type: doc, dest: "../documentacion/modulos", ext: md, orden: "1.1"}
+
+    - name: Mostrar resultado de la generacion de configuracion de interfaces de acceso
+      ansible.builtin.debug:
+        var: int_access_result
+
+- name: Generar codigo desde templates Jinja2 para interfaces troncales
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}, {{ modelo.hosts_groups.core_switches }}"
+  gather_facts: false
+
+  vars_files:
+    - ../modelo_datos/modelo.yaml
+
+  tasks:
+    - name: Defincion de variables locales
+      ansible.builtin.set_fact:
+        interfaces: "{{ modelo.infra_spec.devices[inventory_hostname].interfaces }}"
+
+    - name: Renderizar template Jinja2 para configurarcion de interfaces troncales
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/inter_trunk_{{ item.type }}.j2"
+        dest: "{{ playbook_dir }}/{{ item.dest }}/{{ item.orden }}{{ inventory_hostname }}_int_trunk.{{ item.ext }}"
+        mode: "0644"
+      register: int_trunk_result
+      loop:
+        - {type: cfg, dest: "../configs", ext: cfg, orden: ""}
+        - {type: doc, dest: "../documentacion/modulos", ext: md, orden: "1.2"}
+
+    - name: Mostrar resultado de la generacion de configuracion de interfaces troncales
+      ansible.builtin.debug:
+        var: int_trunk_result
+
+- name: Generar codigo desde templates Jinja2 para configuracion de VLANs
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  gather_facts: false
+
+  vars_files:
+    - ../modelo_datos/modelo.yaml
+
+  tasks:
+    - name: Defincion de variables locales
+      ansible.builtin.set_fact:
+        vlans: "{{ modelo.infra_spec.devices[inventory_hostname].vlans }}"
+
+    - name: Renderizar template Jinja2 para configurarcion de VLANs
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/vlans_{{ item.type }}.j2"
+        dest: "{{ playbook_dir }}/{{ item.dest }}/{{ item.orden }}{{ inventory_hostname }}_vlans.{{ item.ext }}"
+        mode: "0644"
+      register: vlans_result
+      loop:
+        - {type: cfg, dest: "../configs", ext: cfg, orden: ""}
+        - {type: doc, dest: "../documentacion/modulos", ext: md, orden: "1.3"}
+
+    - name: Mostrar resultado de la generacion de configuracion de VLANs
+      ansible.builtin.debug:
+        var: vlans_result
+
+- name: Generar codigo desde templates Jinja2 para configuracion de SVI y VRRP
+  hosts: "{{ modelo.hosts_groups.core_switches }}"
+  gather_facts: false
+
+  vars_files:
+    - ../modelo_datos/modelo.yaml
+
+  tasks:
+    - name: Defincion de variables locales
+      ansible.builtin.set_fact:
+        interfaces: "{{ modelo.infra_spec.devices[inventory_hostname].interfaces }}"
+
+    - name: Renderizar template Jinja2 para configurarcion de SVI y VRRP
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/inter_svi_{{ item.type }}.j2"
+        dest: "{{ playbook_dir }}/{{ item.dest }}/{{ item.orden }}{{ inventory_hostname }}_inter_svi.{{ item.ext }}"
+        mode: "0644"
+      register: svi_vrrp_result
+      loop:
+        - {type: cfg, dest: "../configs", ext: cfg, orden: ""}
+        - {type: doc, dest: "../documentacion/modulos", ext: md, orden: "1.4"}
