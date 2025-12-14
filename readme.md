@@ -36,7 +36,7 @@ La infraestructura contempla los siguientes dispositivos:
   - Routing dinámico **EIGRP (AS 10)**
   - Redundancia de gateway mediante **VRRP**
 
-- **2 Switches de Acceso**
+- **3 Switches de Acceso**
   - `SwitchA` – IP Gestión: `192.168.100.12`
   - `SwitchB` – IP Gestión: `192.168.100.13`
   - `SwitchC` – IP Gestión: `192.168.100.14`
@@ -277,3 +277,4 @@ Proyecto educativo - Network Automation Engineer Course
 ---
 
 **Última actualización**: Diciembre 2025
+
