@@ -1,0 +1,13 @@
+# que no se suma venv 
+.venv/
+# Ignorar archivos de configuración de IDEs
+.vscode/
+.idea/
+# Ignorar archivos de logs
+*.log
+# Ignorar archivos temporales de sistema operativo
+.DS_Store
+Thumbs.db
+# Ignorar archivos compilados de Python
+__pycache__/
+*.pyc

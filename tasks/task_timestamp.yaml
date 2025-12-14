@@ -1,5 +1,4 @@
 # Task get time from SO
-# By Ed Scrimaglia
 ---
 - name: Get date in UTC
   ansible.builtin.command: date -u "+%Y-%m-%d %H:%M:%S"

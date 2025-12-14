@@ -1,6 +1,6 @@
 # Playbook para aplicar las configuraciones generadas a los dispositivos de red
-# By Ed Scrimaglia
 ---
+# Play para aplicar configuraciones de interfaces de trunk
 - name: Aplicar configuraciones de interfaces de trunk a dispositivos de red
   hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
   gather_facts: false
@@ -19,6 +19,8 @@
     - name: Guardar configuracion
       cisco.ios.ios_config:
         save_when: modified
+
+# Play para aplicar configuraciones de interfaces de acceso
 
 - name: Aplicar configuraciones de interfaces de acceso a dispositivos de red
   hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
@@ -39,6 +41,8 @@
       cisco.ios.ios_config:
         save_when: modified
 
+# Play para aplicar configuraciones de VLANs
+
 - name: Aplicar configuraciones de VLANs a dispositivos de red
   hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
   gather_facts: false
@@ -58,6 +62,8 @@
       cisco.ios.ios_config:
         save_when: modified
 
+# Play para aplicar configuraciones de SVI y VRRP
+
 - name: Aplicar configuraciones de SVI y VRRP a dispositivos de red
   hosts: "{{ modelo.hosts_groups.core_switches }}"
   gather_facts: false
@@ -70,6 +76,27 @@
       cisco.ios.ios_config:
         src: "{{ playbook_dir }}/../configs/{{ inventory_hostname }}_inter_svi.cfg"
       register: apply_svi_vrrp_result
+      notify: Guardar configuracion
+
+  handlers:
+    - name: Guardar configuracion
+      cisco.ios.ios_config:
+        save_when: modified
+
+# Play para aplicar configuraciones de EIGRP en los switches core
+
+- name: Aplicar configuraciones de EIGRP a switches core
+  hosts: "{{ modelo.hosts_groups.core_switches }}"
+  gather_facts: false
+
+  vars_files:
+    - ../modelo_datos/modelo.yaml
+
+  tasks:
+    - name: Aplicar configuración de EIGRP
+      cisco.ios.ios_config:
+        src: "{{ playbook_dir }}/../configs/{{ inventory_hostname }}_eigrp.cfg"
+      register: apply_eigrp_result
       notify: Guardar configuracion
 
   handlers:

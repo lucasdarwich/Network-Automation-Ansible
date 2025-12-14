@@ -24,10 +24,10 @@ inrter_svi:
 modelo:
   metadatos:
     proyecto: Simulacro de Caso de Uso Ansible
-    version: '1.0'
-    autor: Ed Scrimaglia
-    fecha_creacion: '2025-12-12'
-    time_zone: America/Argentina/Buenos_Aires
+    version: "1.0"
+    autor: Lucas Javier Darwich
+    fecha_creacion: "2025-12-12"
+    time_zone: America/Argentina/Cordoba
   hosts_groups:
     access_switches: cisco_ios
     core_switches: cisco_ios_core
@@ -39,234 +39,234 @@ modelo:
           ip: 192.168.100.12
           interface: GigabitEthernet0/0
         interfaces:
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 10,20
-          vlan: null
-          name: GigabitEthernet0/1
-          description: Conexion a SW_CORE_1
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 10,20
-          vlan: null
-          name: GigabitEthernet0/2
-          description: Conexion a SW_CORE_2
-        - mode: access
-          trunk_mode: null
-          allowed_vlans: null
-          name: GigabitEthernet1/1
-          description: Conexion a PC_ING_1
-          vlan: 10
-        - mode: access
-          trunk_mode: null
-          allowed_vlans: null
-          name: GigabitEthernet1/2
-          description: Conexion a PC_PROD_1
-          vlan: 20
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 10,20
+            vlan: null
+            name: GigabitEthernet0/1
+            description: Conexion a SW_CORE_1
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 10,20
+            vlan: null
+            name: GigabitEthernet0/2
+            description: Conexion a SW_CORE_2
+          - mode: access
+            trunk_mode: null
+            allowed_vlans: null
+            name: GigabitEthernet1/1
+            description: Conexion a PC_ING_1
+            vlan: 10
+          - mode: access
+            trunk_mode: null
+            allowed_vlans: null
+            name: GigabitEthernet1/2
+            description: Conexion a PC_PROD_1
+            vlan: 20
         vlans:
-        - id: 10
-          name: Ingenieria
-        - id: 20
-          name: Produccion
+          - id: 10
+            name: Ingenieria
+          - id: 20
+            name: Produccion
       SwitchB:
         management:
           ip: 192.168.100.13
           interface: GigabitEthernet0/0
         interfaces:
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 10,20
-          vlan: null
-          name: GigabitEthernet0/1
-          description: Conexion a SW_CORE_1
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 10,20
-          vlan: null
-          name: GigabitEthernet0/2
-          description: Conexion a SW_CORE_2
-        - mode: access
-          trunk_mode: null
-          allowed_vlans: null
-          name: GigabitEthernet1/1
-          description: Conexion a PC_ING_2
-          vlan: 10
-        - mode: access
-          trunk_mode: null
-          allowed_vlans: null
-          name: GigabitEthernet1/2
-          description: Conexion a PC_PROD_2
-          vlan: 20
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 10,20
+            vlan: null
+            name: GigabitEthernet0/1
+            description: Conexion a SW_CORE_1
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 10,20
+            vlan: null
+            name: GigabitEthernet0/2
+            description: Conexion a SW_CORE_2
+          - mode: access
+            trunk_mode: null
+            allowed_vlans: null
+            name: GigabitEthernet1/1
+            description: Conexion a PC_ING_2
+            vlan: 10
+          - mode: access
+            trunk_mode: null
+            allowed_vlans: null
+            name: GigabitEthernet1/2
+            description: Conexion a PC_PROD_2
+            vlan: 20
         vlans:
-        - id: 10
-          name: Ingenieria
-        - id: 20
-          name: Produccion
+          - id: 10
+            name: Ingenieria
+          - id: 20
+            name: Produccion
       SwitchC:
         management:
           ip: 192.168.100.14
           interface: GigabitEthernet0/0
         interfaces:
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 30
-          vlan: null
-          name: GigabitEthernet0/1
-          description: Conexion a SwitchCore_1
-        - mode: trunk
-          trunk_mode: auto
-          allowed_vlans: 30
-          vlan: null
-          name: GigabitEthernet0/2
-          description: Conexion a SwitchCore_2
-        - mode: access
-          trunk_mode: null
-          allowed_vlans: null
-          name: GigabitEthernet1/1
-          description: Conexion a Servidor_WEB
-          vlan: 30
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 30
+            vlan: null
+            name: GigabitEthernet0/1
+            description: Conexion a SwitchCore_1
+          - mode: trunk
+            trunk_mode: auto
+            allowed_vlans: 30
+            vlan: null
+            name: GigabitEthernet0/2
+            description: Conexion a SwitchCore_2
+          - mode: access
+            trunk_mode: null
+            allowed_vlans: null
+            name: GigabitEthernet1/1
+            description: Conexion a Servidor_WEB
+            vlan: 30
         vlans:
-        - id: 30
-          name: Finanzas
+          - id: 30
+            name: Finanzas
       SwitchCore_1:
         routing:
           name: eigrp
           as_number: 10
           router_id: 1.1.1.1
           networks:
-          - 192.168.10.0
-          - 192.168.20.0
-          - 192.168.30.0
+            - 192.168.10.0
+            - 192.168.20.0
+            - 192.168.30.0
         management:
           ip: 192.168.100.10
           interface: GigabitEthernet0/0
         interfaces:
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/1
-          description: Conexion a SwitchA
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/2
-          description: Conexion a SwitchB
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/3
-          description: Conexion a SwitchC
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan10
-          description: SVI Ingenieria
-          ip_address: 192.168.10.250
-          mask: 255.255.255.0
-          vrrp_group: 10
-          vrrp_priority: 1
-          vrrp_ip: 192.168.10.254
-          vlan: 10
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan20
-          description: SVI Produccion
-          ip_address: 192.168.20.250
-          mask: 255.255.255.0
-          vrrp_group: 20
-          vrrp_priority: 2
-          vrrp_ip: 192.168.20.254
-          vlan: 20
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan30
-          description: SVI Finanzas
-          ip_address: 192.168.30.250
-          mask: 255.255.255.0
-          vrrp_group: 30
-          vrrp_priority: 1
-          vrrp_ip: 192.168.30.254
-          vlan: 30
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/1
+            description: Conexion a SwitchA
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/2
+            description: Conexion a SwitchB
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/3
+            description: Conexion a SwitchC
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan10
+            description: SVI Ingenieria
+            ip_address: 192.168.10.250
+            mask: 255.255.255.0
+            vrrp_group: 10
+            vrrp_priority: 1
+            vrrp_ip: 192.168.10.254
+            vlan: 10
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan20
+            description: SVI Produccion
+            ip_address: 192.168.20.250
+            mask: 255.255.255.0
+            vrrp_group: 20
+            vrrp_priority: 2
+            vrrp_ip: 192.168.20.254
+            vlan: 20
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan30
+            description: SVI Finanzas
+            ip_address: 192.168.30.250
+            mask: 255.255.255.0
+            vrrp_group: 30
+            vrrp_priority: 1
+            vrrp_ip: 192.168.30.254
+            vlan: 30
         vlans:
-        - id: 10
-          name: Ingenieria
-        - id: 20
-          name: Produccion
-        - id: 30
-          name: Finanzas
+          - id: 10
+            name: Ingenieria
+          - id: 20
+            name: Produccion
+          - id: 30
+            name: Finanzas
       SwitchCore_2:
         routing:
           name: eigrp
           as_number: 10
           router_id: 1.1.1.3
           networks:
-          - 192.168.10.0
-          - 192.168.20.0
-          - 192.168.30.0
+            - 192.168.10.0
+            - 192.168.20.0
+            - 192.168.30.0
         management:
           ip: 192.168.100.11
           interface: GigabitEthernet0/0
         interfaces:
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/1
-          description: Conexion a SwitchB
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/2
-          description: Conexion a SwitchA
-        - mode: trunk
-          trunk_mode: desirable
-          allowed_vlans: 10,20,30
-          vlan: null
-          name: GigabitEthernet0/3
-          description: Conexion a SwitchC
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan10
-          description: SVI Ingenieria
-          ip_address: 192.168.10.251
-          mask: 255.255.255.0
-          vrrp_group: 10
-          vrrp_priority: 2
-          vrrp_ip: 192.168.10.254
-          vlan: 10
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan20
-          description: SVI Produccion
-          ip_address: 192.168.20.251
-          mask: 255.255.255.0
-          vrrp_group: 20
-          vrrp_priority: 1
-          vrrp_ip: 192.168.20.254
-          vlan: 20
-        - mode: svi
-          trunk_mode: null
-          allowed_vlans: null
-          name: Vlan30
-          description: SVI Finanzas
-          ip_address: 192.168.30.251
-          mask: 255.255.255.0
-          vrrp_group: 30
-          vrrp_priority: 2
-          vrrp_ip: 192.168.30.254
-          vlan: 30
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/1
+            description: Conexion a SwitchB
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/2
+            description: Conexion a SwitchA
+          - mode: trunk
+            trunk_mode: desirable
+            allowed_vlans: 10,20,30
+            vlan: null
+            name: GigabitEthernet0/3
+            description: Conexion a SwitchC
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan10
+            description: SVI Ingenieria
+            ip_address: 192.168.10.251
+            mask: 255.255.255.0
+            vrrp_group: 10
+            vrrp_priority: 2
+            vrrp_ip: 192.168.10.254
+            vlan: 10
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan20
+            description: SVI Produccion
+            ip_address: 192.168.20.251
+            mask: 255.255.255.0
+            vrrp_group: 20
+            vrrp_priority: 1
+            vrrp_ip: 192.168.20.254
+            vlan: 20
+          - mode: svi
+            trunk_mode: null
+            allowed_vlans: null
+            name: Vlan30
+            description: SVI Finanzas
+            ip_address: 192.168.30.251
+            mask: 255.255.255.0
+            vrrp_group: 30
+            vrrp_priority: 2
+            vrrp_ip: 192.168.30.254
+            vlan: 30
         vlans:
-        - id: 10
-          name: Ingenieria
-        - id: 20
-          name: Produccion
-        - id: 30
-          name: Finanzas
+          - id: 10
+            name: Ingenieria
+          - id: 20
+            name: Produccion
+          - id: 30
+            name: Finanzas
