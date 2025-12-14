@@ -62,7 +62,7 @@ La infraestructura contempla los siguientes dispositivos:
   Routing dinámico entre VLANs (AS 10).
 
 - **Enlaces Troncales (Trunk)**  
-  Transporte de múltiples VLANs entre access, core y data center.
+  Transporte de múltiples VLANs entre access y core.
 
 ---
 
@@ -277,4 +277,5 @@ Proyecto educativo - Network Automation Engineer Course
 ---
 
 **Última actualización**: Diciembre 2025
+
 
