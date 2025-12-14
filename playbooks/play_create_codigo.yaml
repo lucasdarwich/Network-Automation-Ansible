@@ -3,7 +3,7 @@
 # Play para generar codigo desde templates Jinja2 para interfaces de acceso
 
 - name: Generar codigo desde templates Jinja2 para interfaces de acceso
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}"
   gather_facts: false
 
   vars_files:
@@ -31,7 +31,7 @@
 # Play para generar codigo desde templates Jinja2 para interfaces troncales
 
 - name: Generar codigo desde templates Jinja2 para interfaces troncales
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}, {{ modelo.hosts_groups.core_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}"
   gather_facts: false
 
   vars_files:
@@ -59,7 +59,7 @@
 # Play para generar codigo desde templates Jinja2 para configuracion de VLANs
 
 - name: Generar codigo desde templates Jinja2 para configuracion de VLANs
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}"
   gather_facts: false
 
   vars_files:

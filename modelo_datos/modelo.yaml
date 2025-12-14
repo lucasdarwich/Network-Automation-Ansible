@@ -29,9 +29,8 @@ modelo:
     fecha_creacion: "2025-12-12"
     time_zone: America/Argentina/Cordoba
   hosts_groups:
-    access_switches: cisco_ios
+    access_switches: cisco_ios_access
     core_switches: cisco_ios_core
-    data_center_switches: cisco_ios_datacenter
   infra_spec:
     devices:
       SwitchA:
