@@ -11,3 +11,9 @@ Thumbs.db
 # Ignorar archivos compilados de Python
 __pycache__/
 *.pyc
+# Ignorar archivos de Ansible Vault
+*.vault
+# Ignorar archivos de salida de playbooks
+*.retry
+# Ignorar archivos de configuración local
+ansible.cfg

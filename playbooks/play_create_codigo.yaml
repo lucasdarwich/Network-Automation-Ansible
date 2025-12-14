@@ -120,7 +120,7 @@
   tasks:
     - name: Defincion de variables locales
       ansible.builtin.set_fact:
-        eigrp_networks: "{{ modelo.infra_spec.devices[inventory_hostname].routing.networks }}"
+        routing: "{{ modelo.infra_spec.devices[inventory_hostname].routing }}"
 
     - name: Renderizar template Jinja2 para configurarcion de EIGRP
       ansible.builtin.template:
