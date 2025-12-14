@@ -17,3 +17,8 @@ __pycache__/
 *.retry
 # Ignorar archivos de configuración local
 ansible.cfg
+uv.lock 
+# Ignorar archivos de base de datos SQLite
+*.sqlite3
+# Ignorar archivos de configuración de entorno
+.env

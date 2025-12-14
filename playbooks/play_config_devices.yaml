@@ -1,8 +1,9 @@
 # Playbook para aplicar las configuraciones generadas a los dispositivos de red
 ---
 # Play para aplicar configuraciones de interfaces de trunk
+
 - name: Aplicar configuraciones de interfaces de trunk a dispositivos de red
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}"
   gather_facts: false
 
   vars_files:
@@ -23,7 +24,7 @@
 # Play para aplicar configuraciones de interfaces de acceso
 
 - name: Aplicar configuraciones de interfaces de acceso a dispositivos de red
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}"
   gather_facts: false
 
   vars_files:
@@ -44,7 +45,7 @@
 # Play para aplicar configuraciones de VLANs
 
 - name: Aplicar configuraciones de VLANs a dispositivos de red
-  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}, {{ modelo.hosts_groups.data_center_switches }}"
+  hosts: "{{ modelo.hosts_groups.access_switches }}, {{ modelo.hosts_groups.core_switches }}
   gather_facts: false
 
   vars_files:

@@ -1,12 +1,35 @@
-# Task validate data model against JSON schema
----
-- name: Validar el modelo de datos contra el esquema JSON
-  ansible.utils.validate:
-    data: "{{ lookup('file', modelo_datos_path) | from_yaml }}"
-    criteria: "{{ lookup('file', schema_path) | from_json }}"
-    engine: ansible.utils.jsonschema
-  register: validation_result
+# Validar modelo de datos contra archivo json shqema que ya tengo en la carpeta jsons
 
-- name: Mostrar resultado de la validacion
-  ansible.builtin.debug:
-    var: validation_result
+- name: Validar modelo de datos contra esquema JSON
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Cargar modelo YAML completo como dict
+      ansible.builtin.include_vars:
+        file: "{{ playbook_dir }}/../modelo_datos/modelo.yaml"
+        name: modelo_doc
+
+    - name: Cargar esquema JSON
+      ansible.builtin.slurp:
+        src: "{{ playbook_dir }}/../jsons/json-schema-modelo.json"
+      register: schema_file
+
+    - name: Parsear esquema a dict
+      ansible.builtin.set_fact:
+        schema: "{{ schema_file.content | b64decode | from_json }}"
+
+    - name: Validar modelo de datos (JSON Schema)
+      ansible.utils.validate:
+        data: "{{ modelo_doc }}"
+        criteria:
+          - "{{ schema }}"
+        engine: ansible.utils.jsonschema
+      register: validation
+
+    - name: Assert validación
+      ansible.builtin.assert:
+        that:
+          - validation.valid
+        fail_msg: "El modelo NO cumple el schema: {{ validation.errors }}"
+        success_msg: "El modelo es válido según el schema."
